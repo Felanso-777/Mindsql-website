@@ -38,7 +38,7 @@ body {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1.5rem 2rem;
+    padding: 0.6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,6 +47,9 @@ body {
 .logo {
     display: flex;
     align-items: center;
+}
+.logo img {
+    height: 60px;
 }
 
 .nav-links a {
