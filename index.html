@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINDSQL | High-end Developer Tool</title>
+    <meta name="description" content="MINDSQL - The ultimate SQL tool for developers.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">MINDSQL</div>
+            <nav class="nav-links">
+                <a href="#docs">Documentation</a>
+                <a href="#howto">How to Use</a>
+                <a href="#github">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <pre class="ascii-art">
+███╗   ███╗██╗███╗   ██╗██████╗ ███████╗ ██████╗ ██╗     
+████╗ ████║██║████╗  ██║██╔══██╗██╔════╝██╔═══██╗██║     
+██╔████╔██║██║██╔██╗ ██║██║  ██║███████╗██║   ██║██║     
+██║╚██╔╝██║██║██║╚██╗██║██║  ██║╚════██║██║▄▄ ██║██║     
+██║ ╚═╝ ██║██║██║ ╚████║██████╔╝███████║╚██████╔╝███████╗
+╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝ ╚══▀▀██╝╚══════╝
+                                            ╚══╝
+                </pre>
+                <div class="terminal-output" id="terminal-output">
+                    <p>Welcome to MINDSQL Terminal. Type '<span class="accent">[OS], SQL --install</span>' to install.</p>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="prompt">root@mindsql:~$</span>
+                    <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Contact Us: <a href="mailto:support@mindsql.com">support@mindsql.com</a></p>
+            <div class="social-links">
+                <a href="#twitter">Twitter/X</a>
+                <a href="#linkedin">LinkedIn</a>
+            </div>
+            <p class="copyright">&copy; 2026 MINDSQL Technologies</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
