@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MINDSQL | High-end Developer Tool</title>
     <meta name="description" content="MINDSQL - The ultimate SQL tool for developers.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header class="navbar">
         <div class="nav-container">
-            <div class="logo">MINDSQL</div>
+            <a href="/" class="logo" style="text-decoration: none;">
+                <img src="assets/3.png" alt="MINDSQL Logo"
+                    style="max-height: 100px; width: auto; vertical-align: middle; padding: 5px 0;">
+            </a>
             <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About Us</a>
                 <a href="#docs">Documentation</a>
-                <a href="#howto">How to Use</a>
                 <a href="#github">GitHub</a>
             </nav>
         </div>
@@ -38,7 +45,8 @@
                                             ╚══╝
                 </pre>
                 <div class="terminal-output" id="terminal-output">
-                    <p>Welcome to MINDSQL Terminal. Type '<span class="accent">[OS], SQL --install</span>' to install.</p>
+                    <p>Welcome to MINDSQL Terminal. Type '<span class="accent">[OS], SQL --install</span>' to install.
+                    </p>
                 </div>
                 <div class="terminal-input-line">
                     <span class="prompt">root@mindsql:~$</span>
@@ -47,18 +55,29 @@
             </div>
         </div>
     </main>
-
     <footer class="footer">
         <div class="footer-content">
-            <p>Contact Us: <a href="mailto:support@mindsql.com">support@mindsql.com</a></p>
-            <div class="social-links">
-                <a href="#twitter">Twitter/X</a>
-                <a href="#linkedin">LinkedIn</a>
+            <div class="footer-brand">
+                <h2 class="footer-logo">Mind<span class="text-blue">SQL</span></h2>
+                <p class="footer-desc">
+                    Bridging the gap between human language and database queries.<br>
+                    A terminal-based tool designed for seamless data interaction.
+                </p>
             </div>
-            <p class="copyright">&copy; 2026 MINDSQL Technologies</p>
+
+            <div class="footer-team">
+                <h3 class="team-heading">Core Team</h3>
+                <ul class="team-list">
+                    <li>Adam Felanso Sijo</li>
+                    <li>Akhildev C Vasudevan</li>
+                    <li>Alex Chittilappilly</li>
+                    <li>Alvin N.S</li>
+                </ul>
+            </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
