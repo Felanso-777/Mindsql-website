@@ -42,7 +42,7 @@ async function bootSequence() {
         { t: '[  0.038902] Mounting database drivers… <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 280 },
         { t: '[  0.052310] <span style="color:var(--yellow)">[WARN]</span> API key not configured — run <span class="accent">setup</span> to configure.', cls: 'boot-line warn', d: 200 },
         { t: '[  0.071884] NLP transformer model loaded… <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 320 },
-        { t: '[  0.089001] PostgreSQL / MySQL / SQLite adapters ready.', cls: 'boot-line', d: 220 },
+        { t: '[  0.089001] MySQL adapter ready. <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 220 },
         { t: '[  0.097432] Terminal ready. <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 180 },
     ];
 
@@ -134,7 +134,7 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
         return `<span class="accent">MINDSQL</span> v1.0.0 <span style="color:var(--text-muted)">stable</span><br>
 <span style="color:var(--text-muted)">Build:  2026.03.15</span><br>
 <span style="color:var(--text-muted)">NLP:    GPT-4o (local inference)</span><br>
-<span style="color:var(--text-muted)">DBs:    PostgreSQL · MySQL · SQLite</span><br>
+<span style="color:var(--text-muted)">DB:     MySQL</span><br>
 <span style="color:var(--text-muted)">License: MIT</span>`;
     },
 
@@ -149,7 +149,7 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
     features() {
         return `<span style="color:var(--accent-color)">⚡ Terminal Native</span>   — Optimized for CLI workflows<br>
 <span style="color:var(--accent-color)">🧠 AI-Powered</span>        — Natural language → SQL translation<br>
-<span style="color:var(--accent-color)">🗄  Multi-Database</span>   — PostgreSQL, MySQL, SQLite<br>
+<span style="color:var(--accent-color)">🗄  MySQL Native</span>     — Optimised MySQL support<br>
 <span style="color:var(--accent-color)">🔒 Local Inference</span>   — Your data never leaves your machine<br>
 <span style="color:var(--accent-color)">🚀 Cross-Platform</span>    — Windows, macOS, Linux`;
     },
@@ -165,7 +165,7 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
     },
 
     github() {
-        setTimeout(() => window.open('https://github.com', '_blank'), 200);
+        setTimeout(() => window.open('https://github.com/YOUR-ORG/mindsql', '_blank'), 200);
         return `<span style="color:var(--green)">Opening GitHub…</span>`;
     },
 
