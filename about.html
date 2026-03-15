@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | MINDSQL</title>
-    <meta name="description" content="Learn about MindSQL, the terminal-based tool designed for seamless data interaction.">
+    <meta name="description" content="Learn about MindSQL — the terminal-based AI tool for seamless data interaction.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="text-decoration: none;">
-                <img src="assets/4.png" alt="MINDSQL Logo"
-                    style="max-height: 100px; width: auto; vertical-align: middle; padding: 5px 0;">
+            <a href="index.html" class="logo" style="text-decoration:none">
+                <img src="assets/3.png" alt="MINDSQL Logo" style="max-height:48px;width:auto;vertical-align:middle">
             </a>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html" class="active">About Us</a>
-                <a href="installation.html">Installation Guide</a>
+                <a href="installation.html">Installation</a>
                 <a href="index.html#docs">Documentation</a>
                 <a href="#github">GitHub</a>
             </nav>
@@ -29,64 +26,220 @@
     </header>
 
     <main class="about-page">
-        <!-- Hero Section -->
+
+        <!-- ── Hero ─────────────────────────────────── -->
         <section class="about-hero">
             <div class="container border-glow">
-                <h1 class="hero-heading">Bridging the gap between <span class="highlight">human language</span> and database queries.</h1>
+                <h1 class="hero-heading">
+                    Bridging the gap between<br>
+                    <span class="highlight">human language</span> and databases.
+                </h1>
                 <p class="hero-subtitle font-mono">
-                    MindSQL is a terminal-based tool designed for seamless data interaction through natural language.
+                    MindSQL is a terminal-based AI tool that translates plain English into SQL —<br>
+                    fast, accurate, and completely local.
                 </p>
             </div>
         </section>
 
-        <!-- Mission Section -->
+        <!-- ── Stats ─────────────────────────────────── -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">OS Platforms</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1">0</div>
+                        <div class="stat-label">AI Engine</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="inf">∞</div>
+                        <div class="stat-label">Possible Queries</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Mission ───────────────────────────────── -->
         <section class="mission-section">
             <div class="container container-sm">
-                <div class="glass-card mission-card anim-delay-1">
+                <div class="glass-card mission-card">
                     <h2>The Mission</h2>
                     <p class="font-mono">
-                        To eliminate the friction of rigid SQL syntax by allowing users to interact with data using natural, intuitive English.
+                        To eliminate the friction of rigid SQL syntax by allowing users to interact with data
+                        using natural, intuitive English — so anyone can query a database, not just engineers.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Core Features Section -->
+        <!-- ── Core Features ─────────────────────────── -->
         <section class="features-section">
             <div class="container">
-                <h2 class="section-title anim-delay-1">Core Features</h2>
+                <h2 class="section-title">Core Features</h2>
                 <div class="features-grid">
-                    <div class="glass-card feature-item anim-delay-2">
-                        <div class="feature-icon">⚡</div>
+                    <div class="glass-card feature-item">
+                        <span class="feature-icon">⚡</span>
                         <h3>Terminal Native</h3>
-                        <p class="font-mono">Optimized for CLI workflows.</p>
+                        <p class="font-mono">Optimized for CLI workflows. Zero GUI overhead.</p>
                     </div>
-                    <div class="glass-card feature-item anim-delay-3">
-                        <div class="feature-icon">🧠</div>
+                    <div class="glass-card feature-item">
+                        <span class="feature-icon">🧠</span>
                         <h3>AI-Powered</h3>
-                        <p class="font-mono">Intelligent English-to-SQL translation.</p>
+                        <p class="font-mono">Intelligent natural language → SQL translation.</p>
                     </div>
-                    <div class="glass-card feature-item anim-delay-4">
-                        <div class="feature-icon">🚀</div>
-                        <h3>Efficient</h3>
-                        <p class="font-mono">Built for speed and accuracy.</p>
+                    <div class="glass-card feature-item">
+                        <span class="feature-icon">🚀</span>
+                        <h3>Cross-Platform</h3>
+                        <p class="font-mono">Windows, macOS, and Linux. One tool, everywhere.</p>
+                    </div>
+                    <div class="glass-card feature-item">
+                        <span class="feature-icon">🔒</span>
+                        <h3>Local &amp; Private</h3>
+                        <p class="font-mono">Your data never leaves your machine. Fully offline-capable.</p>
+                    </div>
+                    <div class="glass-card feature-item">
+                        <span class="feature-icon">🗄</span>
+                        <h3>Multi-Database</h3>
+                        <p class="font-mono">PostgreSQL, MySQL, and SQLite out of the box.</p>
+                    </div>
+                    <div class="glass-card feature-item">
+                        <span class="feature-icon">⚙️</span>
+                        <h3>Configurable</h3>
+                        <p class="font-mono">Bring your own API key or run entirely locally.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- The Team Section -->
-        <section class="team-section anim-delay-4">
-            <div class="container container-sm">
-                <h2 class="section-title text-center">The Team</h2>
-                <div class="team-roster">
-                    <div class="team-member">Adam Felanso Sijo</div>
-                    <div class="team-member">Akhildev C Vasudevan</div>
-                    <div class="team-member">Alex Chittilappilly</div>
-                    <div class="team-member">Alvin N.S</div>
+        <!-- ── Timeline ──────────────────────────────── -->
+        <section class="timeline-section">
+            <div class="container">
+                <h2 class="section-title">How We Got Here</h2>
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-tag">Phase 01 — Conception</div>
+                            <h4>The Idea</h4>
+                            <p>Frustrated by rigid SQL syntax, the team asked: what if you could just <em>talk</em> to your database?</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-tag">Phase 02 — Architecture</div>
+                            <h4>Core Engine Built</h4>
+                            <p>The NLP inference layer and SQL parser were designed — the backbone that powers every translation.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-tag">Phase 03 — Expansion</div>
+                            <h4>Multi-Platform Support</h4>
+                            <p>Builds shipped for Windows, macOS, and Linux. One codebase, three platforms, zero compromise.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-tag">Phase 04 — Launch</div>
+                            <h4>v1.0.0 Released</h4>
+                            <p>MindSQL shipped to the world. The query whisperer is now in the wild.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
+        <!-- ── Team ──────────────────────────────────── -->
+        <section class="team-section">
+            <div class="container container-sm">
+                <h2 class="section-title text-center">The Team</h2>
+                <p style="text-align:center;color:var(--text-muted);font-family:var(--font-mono);font-size:0.85rem;margin-bottom:2.5rem">
+                    Hover over a card to flip it ↓
+                </p>
+                <div class="team-roster">
+
+                    <!-- Adam -->
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="tc-avatar">AFS</div>
+                                <div class="tc-name">Adam Felanso Sijo</div>
+                                <div class="tc-dot"></div>
+                                <div class="tc-hint">hover to flip</div>
+                            </div>
+                            <div class="team-card-back">
+                                <div class="tc-role">Lead Developer</div>
+                                <div class="tc-quote">"The architect behind the vision — if it runs, it's his fault."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Akhildev -->
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="tc-avatar">ACV</div>
+                                <div class="tc-name">Akhildev C Vasudevan</div>
+                                <div class="tc-dot"></div>
+                                <div class="tc-hint">hover to flip</div>
+                            </div>
+                            <div class="team-card-back">
+                                <div class="tc-role">AI Engineer</div>
+                                <div class="tc-quote">"Teaching machines to think in SQL, one prompt at a time."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alex -->
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="tc-avatar">AC</div>
+                                <div class="tc-name">Alex Chittilappilly</div>
+                                <div class="tc-dot"></div>
+                                <div class="tc-hint">hover to flip</div>
+                            </div>
+                            <div class="team-card-back">
+                                <div class="tc-role">Backend Developer</div>
+                                <div class="tc-quote">"The query whisperer. If the DB responds, he made it happen."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alvin -->
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="tc-avatar">ANS</div>
+                                <div class="tc-name">Alvin N.S</div>
+                                <div class="tc-dot"></div>
+                                <div class="tc-hint">hover to flip</div>
+                            </div>
+                            <div class="team-card-back">
+                                <div class="tc-role">Systems Architect</div>
+                                <div class="tc-quote">"Building on solid foundations — three platforms, zero excuses."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -95,10 +248,9 @@
                 <h2 class="footer-logo">Mind<span class="text-blue">SQL</span></h2>
                 <p class="footer-desc">
                     Bridging the gap between human language and database queries.<br>
-                    A terminal-based tool designed for seamless data interaction.
+                    A terminal-based AI tool designed for seamless data interaction.
                 </p>
             </div>
-            
             <div class="footer-team">
                 <h3 class="team-heading">Core Team</h3>
                 <ul class="team-list">
@@ -109,7 +261,12 @@
                 </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 MINDSQL Technologies — small2big team</p>
+        </div>
     </footer>
-</body>
 
+    <script src="transitions.js"></script>
+    <script src="about-script.js"></script>
+</body>
 </html>

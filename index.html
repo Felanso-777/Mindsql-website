@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINDSQL | High-end Developer Tool</title>
-    <meta name="description" content="MINDSQL - The ultimate SQL tool for developers.">
+    <title>MINDSQL | SELECT SQL FROM MIND</title>
+    <meta name="description" content="MINDSQL — Terminal-based AI tool that converts natural language to SQL.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code:wght@400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="text-decoration: none;">
-                <img src="assets/4.png" alt="MINDSQL Logo"
-                    style="max-height: 100px; width: auto; vertical-align: middle; padding: 5px 0;">
+            <a href="index.html" class="logo" style="text-decoration:none">
+                <img src="assets/3.png" alt="MINDSQL Logo" style="max-height:48px;width:auto;vertical-align:middle">
             </a>
             <nav class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="about.html">About Us</a>
-                <a href="installation.html">Installation Guide</a>
-                <a href="#docs">Documentation</a>
+                <a href="installation.html">Installation</a>
+                <a href="index.html#docs">Documentation</a>
                 <a href="#github">GitHub</a>
             </nav>
         </div>
@@ -34,6 +31,7 @@
                 <span class="dot red"></span>
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
+                <span class="terminal-header-title">mindsql — bash — 900×600</span>
             </div>
             <div class="terminal-body" id="terminal-body">
                 <pre class="ascii-art">
@@ -42,30 +40,25 @@
 ██╔████╔██║██║██╔██╗ ██║██║  ██║███████╗██║   ██║██║     
 ██║╚██╔╝██║██║██║╚██╗██║██║  ██║╚════██║██║▄▄ ██║██║     
 ██║ ╚═╝ ██║██║██║ ╚████║██████╔╝███████║╚██████╔╝███████╗
-╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝ ╚══▀▀██╝╚══════╝
-                                            ╚══╝
-                </pre>
-                <div class="terminal-output" id="terminal-output">
-                    <p>Welcome to MINDSQL Terminal. Type '<span class="accent">[OS], SQL --install</span>' to install.
-                    </p>
-                </div>
+╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝ ╚══▀▀╝ ╚══════╝</pre>
+                <div class="terminal-output" id="terminal-output"></div>
                 <div class="terminal-input-line">
                     <span class="prompt">root@mindsql:~$</span>
-                    <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                    <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false" placeholder="type a command…">
                 </div>
             </div>
         </div>
     </main>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
                 <h2 class="footer-logo">Mind<span class="text-blue">SQL</span></h2>
                 <p class="footer-desc">
                     Bridging the gap between human language and database queries.<br>
-                    A terminal-based tool designed for seamless data interaction.
+                    A terminal-based AI tool designed for seamless data interaction.
                 </p>
             </div>
-
             <div class="footer-team">
                 <h3 class="team-heading">Core Team</h3>
                 <ul class="team-list">
@@ -76,9 +69,12 @@
                 </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 MINDSQL Technologies — small2big team</p>
+        </div>
     </footer>
 
+    <script src="transitions.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
