@@ -330,7 +330,7 @@
                 <a href="about.html">About Us</a>
                 <a href="installation.html">Installation</a>
                 <a href="docs.html" class="active">Documentation</a>
-                <a href="https://github.com/YOUR-ORG/mindsql" target="_blank">GitHub</a>
+                <a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank">Hugging Face 🤗</a>
             </nav>
         </div>
     </header>
@@ -349,6 +349,7 @@
                 <li><a href="#terminal-cmds">Terminal Commands</a></li>
                 <li><a href="#install-cmds">Install Commands</a></li>
                 <li><a href="#supported-dbs">Supported Databases</a></li>
+                <li><a href="#the-model">The AI Model</a></li>
                 <li><div class="group-label">Other</div></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#changelog">Changelog</a></li>
@@ -554,7 +555,7 @@
                             </tr>
                             <tr>
                                 <td class="cmd-name">github</td>
-                                <td class="cmd-desc">Open the MindSQL GitHub repository in a new tab.</td>
+                                <td class="cmd-desc">Open the MindSQL Hugging Face model page in a new tab.</td>
                                 <td><span class="cmd-badge blue">nav</span></td>
                             </tr>
                             <tr>
@@ -662,6 +663,50 @@
 
             <hr class="docs-divider">
 
+            <!-- ─ The Model ─────────────────────────── -->
+            <section class="docs-section" id="the-model">
+                <div class="docs-section-badge">Reference</div>
+                <h2>The AI Model</h2>
+                <p class="lead">
+                    MindSQL uses a custom fine-tuned <strong style="color:var(--text-main)">Qwen2.5-3B</strong> model, 
+                    quantized to GGUF format for fast local inference. No cloud calls, no API key required by default.
+                </p>
+
+                <div class="glass-card" style="padding:1.75rem;border-top:2px solid #ff9500;margin-bottom:1.25rem">
+                    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap">
+                        <div style="font-size:1.3rem;font-weight:800;color:var(--text-main);letter-spacing:-0.5px">Qwen2.5-3B — MindSQL Fine-tune</div>
+                        <span style="font-family:var(--font-mono);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:20px;background:rgba(255,149,0,0.1);color:#ff9500;border:1px solid rgba(255,149,0,0.25)">🤗 AKHILDEVCV/MindSQL-Model-GGUF</span>
+                    </div>
+                    <table class="cmd-table">
+                        <thead>
+                            <tr><th>Property</th><th>Value</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="cmd-name">Base Model</td><td class="cmd-desc">Qwen2.5-3B-Instruct (Alibaba)</td></tr>
+                            <tr><td class="cmd-name">Fine-tune Task</td><td class="cmd-desc">Natural Language → MySQL query generation</td></tr>
+                            <tr><td class="cmd-name">Format</td><td class="cmd-desc">GGUF (llama.cpp compatible)</td></tr>
+                            <tr><td class="cmd-name">Quantization</td><td class="cmd-desc">Q4_K_M — 4-bit, ~2GB on disk</td></tr>
+                            <tr><td class="cmd-name">Inference Engine</td><td class="cmd-desc">llama.cpp — runs fully offline</td></tr>
+                            <tr><td class="cmd-name">Acceleration</td><td class="cmd-desc">CPU · Apple Metal (M-series) · CUDA (optional)</td></tr>
+                            <tr><td class="cmd-name">License</td><td class="cmd-desc">Apache 2.0</td></tr>
+                            <tr><td class="cmd-name">Hosted on</td><td class="cmd-desc"><a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank" style="color:var(--accent-color)">huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="docs-alert info">
+                    <span class="docs-alert-icon">ℹ</span>
+                    <span>The model is downloaded once during installation and cached locally. After the first run, MindSQL works entirely offline.</span>
+                </div>
+
+                <div class="docs-alert tip">
+                    <span class="docs-alert-icon">✓</span>
+                    <span>For higher accuracy on complex queries, you can optionally configure an external API key via the <code>setup</code> terminal command to use a larger cloud model instead.</span>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
             <!-- ─ FAQ ───────────────────────────────── -->
             <section class="docs-section" id="faq">
                 <div class="docs-section-badge">Other</div>
@@ -682,12 +727,12 @@
 
                     <div class="glass-card" style="padding:1.5rem">
                         <h4 style="color:var(--text-main);font-size:1rem;margin-bottom:0.4rem">Is MindSQL free?</h4>
-                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes, MindSQL is fully free and open-source under the MIT license. See the GitHub repository for details.</p>
+                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes, MindSQL is fully free and open-source under the MIT license. See the Hugging Face model page for details.</p>
                     </div>
 
                     <div class="glass-card" style="padding:1.5rem">
                         <h4 style="color:var(--text-main);font-size:1rem;margin-bottom:0.4rem">My antivirus flagged the binary. Is it safe?</h4>
-                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes. Because the binary is unsigned (we're a small indie team), some antivirus tools flag it as unknown. You can click <em>Allow</em> safely. The source code is publicly auditable on GitHub.</p>
+                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes. Because the binary is unsigned (we're a small indie team), some antivirus tools flag it as unknown. You can click <em>Allow</em> safely. The model weights are publicly available on <a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank" style="color:var(--accent-color)">Hugging Face</a>.</p>
                     </div>
 
                 </div>

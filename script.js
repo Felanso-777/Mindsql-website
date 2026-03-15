@@ -117,7 +117,7 @@ const COMMANDS = {
   <span style="color:var(--accent-color)">team</span><span style="color:var(--text-muted)">Meet the core team</span>
   <span style="color:var(--accent-color)">features</span><span style="color:var(--text-muted)">Core feature list</span>
   <span style="color:var(--accent-color)">whoami</span><span style="color:var(--text-muted)">Who are you?</span>
-  <span style="color:var(--accent-color)">github</span><span style="color:var(--text-muted)">Open GitHub repo</span>
+  <span style="color:var(--accent-color)">huggingface</span><span style="color:var(--text-muted)">Open model on Hugging Face</span>
   <span style="color:var(--accent-color)">status</span><span style="color:var(--text-muted)">System status check</span>
   <span style="color:var(--accent-color)">[os], sql --install</span><span style="color:var(--text-muted)">Install (windows / ubuntu / macos)</span>
   <span style="color:var(--accent-color)">clear</span><span style="color:var(--text-muted)">Clear terminal</span>
@@ -133,7 +133,7 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
     version() {
         return `<span class="accent">MINDSQL</span> v1.0.0 <span style="color:var(--text-muted)">stable</span><br>
 <span style="color:var(--text-muted)">Build:  2026.03.15</span><br>
-<span style="color:var(--text-muted)">NLP:    GPT-4o (local inference)</span><br>
+<span style="color:var(--text-muted)">Model:  Qwen2.5-3B (fine-tuned GGUF)</span><br>
 <span style="color:var(--text-muted)">DB:     MySQL</span><br>
 <span style="color:var(--text-muted)">License: MIT</span>`;
     },
@@ -164,9 +164,9 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
         return `<span style="color:var(--text-muted);font-style:italic">${msgs[Math.floor(Math.random() * msgs.length)]}</span>`;
     },
 
-    github() {
-        setTimeout(() => window.open('https://github.com/YOUR-ORG/mindsql', '_blank'), 200);
-        return `<span style="color:var(--green)">Opening GitHub…</span>`;
+    huggingface() {
+        setTimeout(() => window.open('https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF', '_blank'), 200);
+        return `<span style="color:var(--green)">Opening MindSQL model on Hugging Face…</span>`;
     },
 
     async status() {

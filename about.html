@@ -20,7 +20,7 @@
                 <a href="about.html" class="active">About Us</a>
                 <a href="installation.html">Installation</a>
                 <a href="docs.html">Documentation</a>
-                <a href="https://github.com/YOUR-ORG/mindsql" target="_blank">GitHub</a>
+                <a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank">Hugging Face </a>
             </nav>
         </div>
     </header>
@@ -74,6 +74,80 @@
                         To eliminate the friction of rigid SQL syntax by allowing users to interact with data
                         using natural, intuitive English — so anyone can query a database, not just engineers.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── The Model ─────────────────────────────── -->
+        <section class="model-section">
+            <div class="container">
+                <h2 class="section-title">The AI Model</h2>
+                <div class="model-card glass-card">
+                    <div class="model-card-left">
+                        <div class="model-badge-row">
+                            <span class="model-badge">🤗 Hugging Face</span>
+                            <span class="model-badge green">Fine-Tuned</span>
+                            <span class="model-badge blue">GGUF</span>
+                        </div>
+                        <h3 class="model-name">Qwen2.5-3B</h3>
+                        <p class="model-tagline font-mono">MindSQL-Model-GGUF — fine-tuned for text-to-SQL</p>
+                        <p class="model-desc">
+                            MindSQL runs on a custom fine-tuned version of <strong>Qwen2.5 3B</strong> —
+                            Alibaba's state-of-the-art 3-billion-parameter language model. We fine-tuned it
+                            specifically on text-to-SQL tasks so it understands natural English questions
+                            and generates accurate MySQL queries with high reliability.
+                        </p>
+                        <p class="model-desc">
+                            The model is quantized to <strong>GGUF format</strong> for fast,
+                            low-memory local inference — meaning it runs entirely on your machine
+                            with no internet connection required after the first download.
+                        </p>
+                        <a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank" class="model-hf-btn">
+                            <span>🤗</span> View on Hugging Face
+                        </a>
+                    </div>
+                    <div class="model-card-right">
+                        <div class="model-stats-grid">
+                            <div class="model-stat">
+                                <div class="model-stat-val">3B</div>
+                                <div class="model-stat-lbl">Parameters</div>
+                            </div>
+                            <div class="model-stat">
+                                <div class="model-stat-val">GGUF</div>
+                                <div class="model-stat-lbl">Format</div>
+                            </div>
+                            <div class="model-stat">
+                                <div class="model-stat-val">Q4</div>
+                                <div class="model-stat-lbl">Quantization</div>
+                            </div>
+                            <div class="model-stat">
+                                <div class="model-stat-val">~2GB</div>
+                                <div class="model-stat-lbl">Model Size</div>
+                            </div>
+                        </div>
+                        <div class="model-arch-box font-mono">
+                            <div class="model-arch-row">
+                                <span class="arch-label">Base Model</span>
+                                <span class="arch-val">Qwen2.5-3B-Instruct</span>
+                            </div>
+                            <div class="model-arch-row">
+                                <span class="arch-label">Fine-tune Task</span>
+                                <span class="arch-val">Text → MySQL</span>
+                            </div>
+                            <div class="model-arch-row">
+                                <span class="arch-label">Inference</span>
+                                <span class="arch-val">llama.cpp (local)</span>
+                            </div>
+                            <div class="model-arch-row">
+                                <span class="arch-label">Accelerator</span>
+                                <span class="arch-val">CPU / Apple Metal</span>
+                            </div>
+                            <div class="model-arch-row">
+                                <span class="arch-label">License</span>
+                                <span class="arch-val">Apache 2.0</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -184,7 +258,7 @@
                             <div class="team-card-back">
                                 <div class="tc-role">Lead Developer</div>
                                 <div class="tc-quote">"The architect behind the vision — if it runs, it's his fault."</div>
-                                <a href="https://github.com/Felanso-777" target="_blank" class="tc-github">⌥ GitHub</a>
+                                <a href="https://github.com/Felanso-777" target="_blank" class="tc-github">GITHUB</a>
                             </div>
                         </div>
                     </div>
@@ -201,7 +275,7 @@
                             <div class="team-card-back">
                                 <div class="tc-role">AI Engineer</div>
                                 <div class="tc-quote">"Teaching machines to think in SQL, one prompt at a time."</div>
-                                <a href="https://github.com/AkhildevCV" target="_blank" class="tc-github">⌥ GitHub</a>
+                                <a href="https://github.com/AkhildevCV" target="_blank" class="tc-github">GITHUB</a>
                             </div>
                         </div>
                     </div>
@@ -218,7 +292,7 @@
                             <div class="team-card-back">
                                 <div class="tc-role">Backend Developer</div>
                                 <div class="tc-quote">"The query whisperer. If the DB responds, he made it happen."</div>
-                                <a href="https://github.com/buildbyalex" target="_blank" class="tc-github">⌥ GitHub</a>
+                                <a href="https://github.com/buildbyalex" target="_blank" class="tc-github">GITHUB</a>
                             </div>
                         </div>
                     </div>
@@ -235,7 +309,7 @@
                             <div class="team-card-back">
                                 <div class="tc-role">Systems Architect</div>
                                 <div class="tc-quote">"Building on solid foundations — three platforms, zero excuses."</div>
-                                <a href="https://github.com/alvinns" target="_blank" class="tc-github">⌥ GitHub</a>
+                                <a href="https://github.com/alvinns" target="_blank" class="tc-github">GITHUB</a>
                             </div>
                         </div>
                     </div>
