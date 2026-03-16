@@ -104,6 +104,17 @@ osLogos.apple = osLogos.macos;
 osLogos.mac   = osLogos.macos;
 osLogos.linux = osLogos.ubuntu;
 
+/* ─── Download links ────────────────────────────────── */
+
+const osDownloadLinks = {
+    windows: 'https://github.com/Felanso-777/mindsql/releases/download/v1.1.7/MindSQL-windows-latest.exe',
+    ubuntu:  'https://github.com/Felanso-777/mindsql/releases/download/v1.1.7/MindSQL-ubuntu-latest',
+    macos:   'https://github.com/Felanso-777/mindsql/releases/download/v1.1.7/MindSQL-macos-latest',
+};
+osDownloadLinks.apple = osDownloadLinks.macos;
+osDownloadLinks.mac   = osDownloadLinks.macos;
+osDownloadLinks.linux = osDownloadLinks.ubuntu;
+
 /* ─── Built-in commands ─────────────────────────────── */
 
 const COMMANDS = {
@@ -170,7 +181,6 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
     },
 
     async status() {
-        // Simulate a status check
         appendOutput('<span style="color:var(--text-muted)">Running diagnostics…</span>');
         await delay(400);
         appendOutput(`<span style="color:var(--green)">✓</span> AI Engine      <span style="color:var(--green)">ONLINE</span>`);
@@ -180,22 +190,9 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
         appendOutput(`<span style="color:var(--yellow)">⚠</span> API Key        <span style="color:var(--yellow)">NOT SET</span>`);
         await delay(200);
         appendOutput(`<span style="color:var(--green)">✓</span> DB Adapters    <span style="color:var(--green)">3 LOADED</span>`);
-        return null; // already output above
+        return null;
     },
 };
-
-/* ─── Download helper ───────────────────────────────── */
-
-function downloadInstaller(os, content) {
-    const clean = content.replace(/<[^>]*>/gm, '');
-    const blob  = new Blob([clean], { type: 'text/plain' });
-    const url   = URL.createObjectURL(blob);
-    const a     = Object.assign(document.createElement('a'), { href: url, download: `mindsql-${os}-installer.txt`, style: 'display:none' });
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
 
 /* ─── Command processor ─────────────────────────────── */
 
@@ -240,12 +237,20 @@ async function processCommand(cmd) {
 
         const logo = osLogos[os];
         appendOutput(logo || `<span style="color:#ccc">[ OS: ${os.toUpperCase()} Recognized ]</span>`);
-        downloadInstaller(os, logo || os);
 
         await delay(250);
-        appendOutput(`<span class="success">✓ SUCCESS</span>  MINDSQL installed for ${os.toUpperCase()}.`);
+        appendOutput(`<span class="success">✓ SUCCESS</span>  MINDSQL ready for ${os.toUpperCase()}.`);
 
-        if (window.showToast) showToast(`✓ MINDSQL installed for ${os.toUpperCase()}`, 'success');
+        const link = osDownloadLinks[os];
+        if (link) {
+            await delay(200);
+            appendOutput(`<span style="color:var(--green)">↗ Starting download…</span>`);
+            setTimeout(() => window.open(link, '_blank'), 300);
+        } else {
+            appendOutput(`<span style="color:var(--yellow)">⚠ No download link configured for ${os.toUpperCase()}.</span>`);
+        }
+
+        if (window.showToast) showToast(`✓ MINDSQL download started for ${os.toUpperCase()}`, 'success');
 
         terminalInput.disabled = false;
         terminalInput.focus();
