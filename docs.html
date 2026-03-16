@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | MINDSQL</title>
+    <meta name="description" content="MindSQL documentation — quick-start guide and full command reference.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Docs-specific layout ── */
+        .docs-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar */
+        .docs-sidebar {
+            width: 220px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 5rem;
+            align-self: flex-start;
+            height: fit-content;
+        }
+
+        .sidebar-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            border-left: 2px solid transparent;
+            transition: color 0.2s, background 0.2s, border-color 0.2s;
+        }
+
+        .sidebar-nav a:hover {
+            color: var(--text-main);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .sidebar-nav a.active,
+        .sidebar-nav a[data-active] {
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+            background: rgba(79,142,255,0.06);
+        }
+
+        .sidebar-nav .group-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+            padding: 0.9rem 0.75rem 0.3rem;
+        }
+
+        /* Docs content */
+        .docs-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .docs-section { scroll-margin-top: 5.5rem; }
+
+        .docs-section-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            background: rgba(79,142,255,0.1);
+            border: 1px solid rgba(79,142,255,0.2);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            margin-bottom: 0.9rem;
+        }
+
+        .docs-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .docs-section .lead {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            max-width: 680px;
+        }
+
+        /* Steps */
+        .steps { display: flex; flex-direction: column; gap: 1.25rem; }
+
+        .step {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+
+        .step:hover {
+            border-color: rgba(79,142,255,0.2);
+            transform: translateX(4px);
+        }
+
+        .step-num {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), #7c3aed);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 0 14px rgba(79,142,255,0.3);
+        }
+
+        .step-body h4 {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .step-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Inline code */
+        .step-body code, .docs-section p code, .docs-section li code {
+            background: rgba(0,0,0,0.5);
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* Code block */
+        .code-block {
+            position: relative;
+            background: #060910;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.25rem 0;
+        }
+
+        .code-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .code-block-lang {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .code-block pre {
+            padding: 1.25rem 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: #c9d1d9;
+            overflow-x: auto;
+            margin: 0;
+        }
+
+        .code-block .kw  { color: #ff7b72; }
+        .code-block .fn  { color: #79c0ff; }
+        .code-block .str { color: #a5d6ff; }
+        .code-block .cmt { color: #4a5568; font-style: italic; }
+        .code-block .acc { color: var(--accent-color); }
+        .code-block .grn { color: var(--green); }
+
+        /* Command reference table */
+        .cmd-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .cmd-table thead tr {
+            background: rgba(79,142,255,0.06);
+            border-bottom: 1px solid rgba(79,142,255,0.2);
+        }
+
+        .cmd-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cmd-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: top;
+        }
+
+        .cmd-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+        .cmd-table tbody tr:last-child td { border-bottom: none; }
+
+        .cmd-name {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .cmd-desc { color: #c9d1d9; line-height: 1.55; }
+
+        .cmd-example {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .cmd-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .cmd-badge.green { background: rgba(63,185,80,0.12); color: var(--green); }
+        .cmd-badge.blue  { background: rgba(79,142,255,0.12); color: var(--accent-color); }
+        .cmd-badge.red   { background: rgba(255,95,86,0.12); color: #ff5f56; }
+
+        /* Alert box */
+        .docs-alert {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            border: 1px solid;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .docs-alert.info  { background: rgba(79,142,255,0.05); border-color: rgba(79,142,255,0.2); color: #a0b8d8; }
+        .docs-alert.warn  { background: rgba(255,189,46,0.05); border-color: rgba(255,189,46,0.2); color: #e0cc7a; }
+        .docs-alert.tip   { background: rgba(63,185,80,0.05); border-color: rgba(63,185,80,0.2); color: #7ee787; }
+
+        .docs-alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+        /* Divider */
+        .docs-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .docs-sidebar { display: none; }
+            .docs-layout { padding: 2rem 1.25rem 4rem; }
+        }
+
+        @media (max-width: 640px) {
+            .docs-section h2 { font-size: 1.6rem; }
+            .cmd-table { font-size: 0.82rem; }
+            .cmd-table th, .cmd-table td { padding: 0.6rem 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" style="text-decoration:none">
+                <img src="assets/3.png" alt="MINDSQL Logo" style="max-height:80px;width:auto;vertical-align:middle">
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="installation.html">Installation</a>
+                <a href="docs.html" class="active">Documentation</a>
+                <a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank">Hugging Face 🤗</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-layout">
+
+        <!-- ── Sidebar ─────────────────────────────── -->
+        <aside class="docs-sidebar">
+            <div class="sidebar-label">On this page</div>
+            <ul class="sidebar-nav" id="sidebar-nav">
+                <li><div class="group-label">Getting Started</div></li>
+                <li><a href="#quickstart">Quick-Start</a></li>
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#first-query">Your First Query</a></li>
+                <li><div class="group-label">Reference</div></li>
+                <li><a href="#terminal-cmds">Terminal Commands</a></li>
+                <li><a href="#install-cmds">Install Commands</a></li>
+                <li><a href="#supported-dbs">Supported Databases</a></li>
+                <li><a href="#the-model">The AI Model</a></li>
+                <li><div class="group-label">Other</div></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#changelog">Changelog</a></li>
+            </ul>
+        </aside>
+
+        <!-- ── Main content ───────────────────────── -->
+        <main class="docs-content">
+
+            <!-- ─ Quick-Start ───────────────────────── -->
+            <section class="docs-section" id="quickstart">
+                <div class="docs-section-badge">Getting Started</div>
+                <h2>Quick-Start Guide</h2>
+                <p class="lead">
+                    Get from zero to your first SQL query in under two minutes.
+                    MindSQL runs entirely from your terminal — no browser, no cloud, no setup wizard.
+                </p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div class="step-body">
+                            <h4>Download the binary for your OS</h4>
+                            <p>Head to the <a href="installation.html" style="color:var(--accent-color)">Installation page</a> and grab the build for Windows, macOS, or Linux.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div class="step-body">
+                            <h4>Make it executable (macOS / Linux)</h4>
+                            <p>Open your terminal, <code>cd</code> to your Downloads folder, then run:</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-block-lang">bash</span>
+                                    <button class="copy-btn" data-copy="chmod +x MindSQL-macos-latest&#10;./MindSQL-macos-latest">Copy</button>
+                                </div>
+                                <pre><span class="grn">$</span> chmod +x MindSQL-macos-latest
+<span class="grn">$</span> ./MindSQL-macos-latest</pre>
+                            </div>
+                            <p>On <strong>Windows</strong>, just double-click the <code>.exe</code>. If Defender blocks it, click <em>More Info → Run Anyway</em>.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div class="step-body">
+                            <h4>Connect to your database</h4>
+                            <p>MindSQL will prompt you for a connection string on first launch. Example for MySQL:</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-block-lang">connection string</span>
+                                    <button class="copy-btn" data-copy="mysql://user:password@localhost:3306/mydb">Copy</button>
+                                </div>
+                                <pre><span class="acc">mysql://</span>user:password<span class="acc">@</span>localhost:3306/mydb</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <div class="step-body">
+                            <h4>Ask a question in plain English</h4>
+                            <p>Type any natural-language question and MindSQL will generate and run the SQL:</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-block-lang">mindsql session</span>
+                                </div>
+                                <pre><span class="grn">mindsql&gt;</span> <span class="str">show me all users who signed up last week</span>
+
+<span class="cmt">-- Generated SQL:</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> users
+<span class="kw">WHERE</span> created_at <span class="kw">BETWEEN</span>
+  <span class="fn">NOW</span>() - <span class="fn">INTERVAL</span> <span class="str">'7 days'</span> <span class="kw">AND</span> <span class="fn">NOW</span>();
+
+<span class="cmt">-- 42 rows returned in 12ms</span></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ Requirements ──────────────────────── -->
+            <section class="docs-section" id="requirements">
+                <div class="docs-section-badge">Getting Started</div>
+                <h2>Requirements</h2>
+                <p class="lead">MindSQL is a self-contained binary with minimal dependencies.</p>
+
+                <div class="glass-card" style="padding:1.75rem">
+                    <table class="cmd-table">
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Min. Version</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cmd-name">Windows</td>
+                                <td class="cmd-desc">Windows 10 (1903+)</td>
+                                <td class="cmd-desc">No extra deps. Run the <code>.exe</code> directly.</td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">macOS</td>
+                                <td class="cmd-desc">macOS 12 Monterey+</td>
+                                <td class="cmd-desc">Apple Silicon (M1/M2/M3) and Intel both supported.</td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">Linux</td>
+                                <td class="cmd-desc">Ubuntu 20.04+ / Debian 11+</td>
+                                <td class="cmd-desc">Requires <code>libstdc++6</code>. Install via <code>apt</code>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="docs-alert info">
+                    <span class="docs-alert-icon">ℹ</span>
+                    <span>MindSQL bundles its own AI model weights. No internet connection is required after the initial download.</span>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ First Query ────────────────────────── -->
+            <section class="docs-section" id="first-query">
+                <div class="docs-section-badge">Getting Started</div>
+                <h2>Your First Query</h2>
+                <p class="lead">A few example queries to get a feel for what MindSQL can do.</p>
+
+                <div class="glass-card" style="padding:1.75rem;margin-bottom:1.25rem">
+                    <div class="code-block" style="margin:0">
+                        <div class="code-block-header"><span class="code-block-lang">Examples</span></div>
+                        <pre><span class="grn">mindsql&gt;</span> <span class="str">how many orders were placed today?</span>
+<span class="grn">mindsql&gt;</span> <span class="str">list the top 5 customers by total spend</span>
+<span class="grn">mindsql&gt;</span> <span class="str">find all products with less than 10 items in stock</span>
+<span class="grn">mindsql&gt;</span> <span class="str">show average session duration grouped by country</span>
+<span class="grn">mindsql&gt;</span> <span class="str">delete all users who haven't logged in for 90 days</span></pre>
+                    </div>
+                </div>
+
+                <div class="docs-alert warn">
+                    <span class="docs-alert-icon">⚠</span>
+                    <span>Destructive queries (DELETE, DROP, TRUNCATE) are automatically flagged and require a confirmation prompt before execution.</span>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ Terminal Commands ──────────────────── -->
+            <section class="docs-section" id="terminal-cmds">
+                <div class="docs-section-badge">Reference</div>
+                <h2>Terminal Commands</h2>
+                <p class="lead">
+                    Commands available in the interactive MindSQL terminal on the home page.
+                    Press <code>Tab</code> to autocomplete, <code>↑</code>/<code>↓</code> for history.
+                </p>
+
+                <div class="glass-card" style="padding:1.75rem">
+                    <table class="cmd-table">
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cmd-name">help</td>
+                                <td class="cmd-desc">List all available commands with descriptions.</td>
+                                <td><span class="cmd-badge blue">info</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">about</td>
+                                <td class="cmd-desc">Display information about MindSQL — its purpose, team, and origin.</td>
+                                <td><span class="cmd-badge blue">info</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">version</td>
+                                <td class="cmd-desc">Show version number, build date, NLP engine, and database support.</td>
+                                <td><span class="cmd-badge blue">info</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">team</td>
+                                <td class="cmd-desc">List all core team members and their roles.</td>
+                                <td><span class="cmd-badge blue">info</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">features</td>
+                                <td class="cmd-desc">Print a summary of MindSQL's key capabilities.</td>
+                                <td><span class="cmd-badge blue">info</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">whoami</td>
+                                <td class="cmd-desc">Returns a random motivational message. Because why not.</td>
+                                <td><span class="cmd-badge green">fun</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">status</td>
+                                <td class="cmd-desc">Run a live diagnostic — checks AI engine, SQL parser, API key, and DB adapters.</td>
+                                <td><span class="cmd-badge green">system</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">github</td>
+                                <td class="cmd-desc">Open the MindSQL Hugging Face model page in a new tab.</td>
+                                <td><span class="cmd-badge blue">nav</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">clear</td>
+                                <td class="cmd-desc">Clear the terminal output.</td>
+                                <td><span class="cmd-badge blue">util</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ Install Commands ───────────────────── -->
+            <section class="docs-section" id="install-cmds">
+                <div class="docs-section-badge">Reference</div>
+                <h2>Install Commands</h2>
+                <p class="lead">
+                    Type these directly into the home terminal to trigger a simulated install and download your OS installer stub.
+                </p>
+
+                <div class="glass-card" style="padding:1.75rem">
+                    <table class="cmd-table">
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Platform</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cmd-name">windows, sql --install</td>
+                                <td class="cmd-desc">Windows 10/11</td>
+                                <td class="cmd-desc">Runs boot sequence, shows Windows ASCII logo, downloads installer stub.</td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">macos, sql --install</td>
+                                <td class="cmd-desc">macOS 12+</td>
+                                <td class="cmd-desc">Runs boot sequence, shows Apple ASCII logo, downloads installer stub.</td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">ubuntu, sql --install</td>
+                                <td class="cmd-desc">Ubuntu / Debian</td>
+                                <td class="cmd-desc">Runs boot sequence, shows Ubuntu ASCII logo, downloads installer stub.</td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">linux, sql --install</td>
+                                <td class="cmd-desc">Linux (generic)</td>
+                                <td class="cmd-desc">Alias for ubuntu variant.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="docs-alert tip">
+                    <span class="docs-alert-icon">✓</span>
+                    <span>The terminal also supports <code>Tab</code> autocomplete — start typing a command and press Tab to complete it.</span>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ Supported DBs ──────────────────────── -->
+            <section class="docs-section" id="supported-dbs">
+                <div class="docs-section-badge">Reference</div>
+                <h2>Supported Databases</h2>
+                <p class="lead">MindSQL currently supports three major database engines out of the box.</p>
+
+                <div class="glass-card" style="padding:1.75rem">
+                    <table class="cmd-table">
+                        <thead>
+                            <tr>
+                                <th>Database</th>
+                                <th>Connection String Format</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cmd-name">MySQL</td>
+                                <td class="cmd-desc"><code>mysql://user:pass@host:3306/db</code></td>
+                                <td><span class="cmd-badge green">Stable</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">MySQL / MariaDB</td>
+                                <td class="cmd-desc"><code>mysql://user:pass@host:3306/db</code></td>
+                                <td><span class="cmd-badge green">Stable</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">Microsoft SQL Server</td>
+                                <td class="cmd-desc"><code>mssql://user:pass@host:1433/db</code></td>
+                                <td><span class="cmd-badge red">Coming Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cmd-name">MongoDB</td>
+                                <td class="cmd-desc"><code>mongodb://user:pass@host:27017/db</code></td>
+                                <td><span class="cmd-badge red">Planned</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ The Model ─────────────────────────── -->
+            <section class="docs-section" id="the-model">
+                <div class="docs-section-badge">Reference</div>
+                <h2>The AI Model</h2>
+                <p class="lead">
+                    MindSQL uses a custom fine-tuned <strong style="color:var(--text-main)">Qwen2.5-3B</strong> model, 
+                    quantized to GGUF format for fast local inference. No cloud calls, no API key required by default.
+                </p>
+
+                <div class="glass-card" style="padding:1.75rem;border-top:2px solid #ff9500;margin-bottom:1.25rem">
+                    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap">
+                        <div style="font-size:1.3rem;font-weight:800;color:var(--text-main);letter-spacing:-0.5px">Qwen2.5-3B — MindSQL Fine-tune</div>
+                        <span style="font-family:var(--font-mono);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:20px;background:rgba(255,149,0,0.1);color:#ff9500;border:1px solid rgba(255,149,0,0.25)">🤗 AKHILDEVCV/MindSQL-Model-GGUF</span>
+                    </div>
+                    <table class="cmd-table">
+                        <thead>
+                            <tr><th>Property</th><th>Value</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="cmd-name">Base Model</td><td class="cmd-desc">Qwen2.5-3B-Instruct (Alibaba)</td></tr>
+                            <tr><td class="cmd-name">Fine-tune Task</td><td class="cmd-desc">Natural Language → MySQL query generation</td></tr>
+                            <tr><td class="cmd-name">Format</td><td class="cmd-desc">GGUF (llama.cpp compatible)</td></tr>
+                            <tr><td class="cmd-name">Quantization</td><td class="cmd-desc">Q4_K_M — 4-bit, ~2GB on disk</td></tr>
+                            <tr><td class="cmd-name">Inference Engine</td><td class="cmd-desc">llama.cpp — runs fully offline</td></tr>
+                            <tr><td class="cmd-name">Acceleration</td><td class="cmd-desc">CPU · Apple Metal (M-series) · CUDA (optional)</td></tr>
+                            <tr><td class="cmd-name">License</td><td class="cmd-desc">Apache 2.0</td></tr>
+                            <tr><td class="cmd-name">Hosted on</td><td class="cmd-desc"><a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank" style="color:var(--accent-color)">huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="docs-alert info">
+                    <span class="docs-alert-icon">ℹ</span>
+                    <span>The model is downloaded once during installation and cached locally. After the first run, MindSQL works entirely offline.</span>
+                </div>
+
+                <div class="docs-alert tip">
+                    <span class="docs-alert-icon">✓</span>
+                    <span>For higher accuracy on complex queries, you can optionally configure an external API key via the <code>setup</code> terminal command to use a larger cloud model instead.</span>
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ FAQ ───────────────────────────────── -->
+            <section class="docs-section" id="faq">
+                <div class="docs-section-badge">Other</div>
+                <h2>FAQ</h2>
+                <p class="lead">Common questions answered.</p>
+
+                <div style="display:flex;flex-direction:column;gap:1rem">
+
+                    <div class="glass-card" style="padding:1.5rem">
+                        <h4 style="color:var(--text-main);font-size:1rem;margin-bottom:0.4rem">Does MindSQL send my data to the cloud?</h4>
+                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">No. MindSQL runs its AI model entirely on your machine. Your queries and database contents never leave your device.</p>
+                    </div>
+
+                    <div class="glass-card" style="padding:1.5rem">
+                        <h4 style="color:var(--text-main);font-size:1rem;margin-bottom:0.4rem">Can I use my own API key (e.g. OpenAI)?</h4>
+                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes. Run <code>setup</code> in the terminal to configure an external API key, which unlocks GPT-4o for higher accuracy translations.</p>
+                    </div>
+
+                    <div class="glass-card" style="padding:1.5rem">
+                        <h4 style="color:var(--text-main);font-size:1rem;margin-bottom:0.4rem">Is MindSQL free?</h4>
+                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes, MindSQL is fully free and open-source under the MIT license. See the Hugging Face model page for details.</p>
+                    </div>
+
+                    <div class="glass-card" style="padding:1.5rem">
+                        <h4 style="color:var(--text-main);font-size:1rem;margin-bottom:0.4rem">My antivirus flagged the binary. Is it safe?</h4>
+                        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65">Yes. Because the binary is unsigned (we're a small indie team), some antivirus tools flag it as unknown. You can click <em>Allow</em> safely. The model weights are publicly available on <a href="https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF" target="_blank" style="color:var(--accent-color)">Hugging Face</a>.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <hr class="docs-divider">
+
+            <!-- ─ Changelog ──────────────────────────── -->
+            <section class="docs-section" id="changelog">
+                <div class="docs-section-badge">Other</div>
+                <h2>Changelog</h2>
+                <p class="lead">What's changed in each release.</p>
+
+                <div style="display:flex;flex-direction:column;gap:1rem">
+                    <div class="glass-card" style="padding:1.5rem;border-top:2px solid var(--accent-color)">
+                        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+                            <span style="font-family:var(--font-mono);color:var(--accent-color);font-weight:700">v1.0.0</span>
+                            <span style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono)">2026-03-15</span>
+                            <span class="cmd-badge green">Latest</span>
+                        </div>
+                        <ul style="color:var(--text-muted);font-size:0.9rem;line-height:2;padding-left:1.25rem">
+                            <li>Initial public release</li>
+                            <li>MySQL support</li>
+                            <li>Cross-platform builds: Windows, macOS, Linux</li>
+                            <li>Local AI inference engine (no internet required)</li>
+                            <li>Interactive terminal with command history &amp; Tab completion</li>
+                            <li>Destructive query confirmation prompts</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2 class="footer-logo">Mind<span class="text-blue">SQL</span></h2>
+                <p class="footer-desc">
+                    Bridging the gap between human language and database queries.<br>
+                    A terminal-based AI tool designed for seamless data interaction.
+                </p>
+            </div>
+            <div class="footer-team">
+                <h3 class="team-heading">Core Team</h3>
+                <ul class="team-list">
+                    <li>Adam Felanso Sijo</li>
+                    <li>Akhildev C Vasudevan</li>
+                    <li>Alex Chittilappilly</li>
+                    <li>Alvin N.S</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 MINDSQL Technologies — small2big team</p>
+        </div>
+    </footer>
+
+    <script src="transitions.js"></script>
+    <script>
+        // Copy buttons inside docs
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.code-block .copy-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var text = btn.dataset.copy || btn.closest('.code-block').querySelector('pre').innerText;
+                    navigator.clipboard.writeText(text.trim()).then(function () {
+                        btn.textContent = '✓ Copied!';
+                        btn.classList.add('copied');
+                        if (window.showToast) showToast('Copied to clipboard!', 'success');
+                        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
+                    });
+                });
+            });
+
+            // Active sidebar link on scroll
+            var sections = document.querySelectorAll('.docs-section');
+            var links    = document.querySelectorAll('.sidebar-nav a');
+
+            var obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        links.forEach(function (l) { l.classList.remove('active'); });
+                        var match = document.querySelector('.sidebar-nav a[href="#' + e.target.id + '"]');
+                        if (match) match.classList.add('active');
+                    }
+                });
+            }, { rootMargin: '-30% 0px -65% 0px' });
+
+            sections.forEach(function (s) { obs.observe(s); });
+        });
+    </script>
+</body>
+</html>

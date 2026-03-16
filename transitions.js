@@ -114,20 +114,12 @@
         document.body.appendChild(cursor);
         document.body.appendChild(ring);
 
-        let mx = -200, my = -200, rx = -200, ry = -200;
-
+        // Instant snap — no rAF loop, no lag
         document.addEventListener('mousemove', function (e) {
-            mx = e.clientX;
-            my = e.clientY;
-        });
-
-        (function animCursor() {
-            cursor.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
-            rx += (mx - rx) * 0.11;
-            ry += (my - ry) * 0.11;
-            ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
-            requestAnimationFrame(animCursor);
-        })();
+            var x = e.clientX, y = e.clientY;
+            cursor.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%)';
+            ring.style.transform   = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%)';
+        }, { passive: true });
 
         const hoverSel = 'a, button, input, label, .glass-card, .team-card, .copy-btn, .hamburger, .download-btn';
 

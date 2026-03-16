@@ -42,7 +42,7 @@ async function bootSequence() {
         { t: '[  0.038902] Mounting database drivers… <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 280 },
         { t: '[  0.052310] <span style="color:var(--yellow)">[WARN]</span> API key not configured — run <span class="accent">setup</span> to configure.', cls: 'boot-line warn', d: 200 },
         { t: '[  0.071884] NLP transformer model loaded… <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 320 },
-        { t: '[  0.089001] PostgreSQL / MySQL / SQLite adapters ready.', cls: 'boot-line', d: 220 },
+        { t: '[  0.089001] MySQL adapter ready. <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 220 },
         { t: '[  0.097432] Terminal ready. <span style="color:var(--green)">[OK]</span>', cls: 'boot-line', d: 180 },
     ];
 
@@ -128,7 +128,7 @@ const COMMANDS = {
   <span style="color:var(--accent-color)">team</span><span style="color:var(--text-muted)">Meet the core team</span>
   <span style="color:var(--accent-color)">features</span><span style="color:var(--text-muted)">Core feature list</span>
   <span style="color:var(--accent-color)">whoami</span><span style="color:var(--text-muted)">Who are you?</span>
-  <span style="color:var(--accent-color)">github</span><span style="color:var(--text-muted)">Open GitHub repo</span>
+  <span style="color:var(--accent-color)">huggingface</span><span style="color:var(--text-muted)">Open model on Hugging Face</span>
   <span style="color:var(--accent-color)">status</span><span style="color:var(--text-muted)">System status check</span>
   <span style="color:var(--accent-color)">[os], sql --install</span><span style="color:var(--text-muted)">Install (windows / ubuntu / macos)</span>
   <span style="color:var(--accent-color)">clear</span><span style="color:var(--text-muted)">Clear terminal</span>
@@ -144,8 +144,8 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
     version() {
         return `<span class="accent">MINDSQL</span> v1.0.0 <span style="color:var(--text-muted)">stable</span><br>
 <span style="color:var(--text-muted)">Build:  2026.03.15</span><br>
-<span style="color:var(--text-muted)">NLP:    GPT-4o (local inference)</span><br>
-<span style="color:var(--text-muted)">DBs:    PostgreSQL · MySQL · SQLite</span><br>
+<span style="color:var(--text-muted)">Model:  Qwen2.5-3B (fine-tuned GGUF)</span><br>
+<span style="color:var(--text-muted)">DB:     MySQL</span><br>
 <span style="color:var(--text-muted)">License: MIT</span>`;
     },
 
@@ -160,7 +160,7 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
     features() {
         return `<span style="color:var(--accent-color)">⚡ Terminal Native</span>   — Optimized for CLI workflows<br>
 <span style="color:var(--accent-color)">🧠 AI-Powered</span>        — Natural language → SQL translation<br>
-<span style="color:var(--accent-color)">🗄  Multi-Database</span>   — PostgreSQL, MySQL, SQLite<br>
+<span style="color:var(--accent-color)">🗄  MySQL Native</span>     — Optimised MySQL support<br>
 <span style="color:var(--accent-color)">🔒 Local Inference</span>   — Your data never leaves your machine<br>
 <span style="color:var(--accent-color)">🚀 Cross-Platform</span>    — Windows, macOS, Linux`;
     },
@@ -175,9 +175,9 @@ A terminal-based AI tool that translates plain English into SQL — fast, local,
         return `<span style="color:var(--text-muted);font-style:italic">${msgs[Math.floor(Math.random() * msgs.length)]}</span>`;
     },
 
-    github() {
-        setTimeout(() => window.open('https://github.com/Felanso-777/mindsql', '_blank'), 200);
-        return `<span style="color:var(--green)">Opening GitHub…</span>`;
+    huggingface() {
+        setTimeout(() => window.open('https://huggingface.co/AKHILDEVCV/MindSQL-Model-GGUF', '_blank'), 200);
+        return `<span style="color:var(--green)">Opening MindSQL model on Hugging Face…</span>`;
     },
 
     async status() {
